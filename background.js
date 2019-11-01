@@ -3,9 +3,9 @@ chrome.contextMenus.create({"title": title, "contexts": ["all"], "id": "CLOSE_AL
 chrome.contextMenus.onClicked.addListener(closeAllTabsHandler);
 
 function closeAllTabsHandler(info, tab) {
-    chrome.tabs.query({"active": false, "pinned": false}, tabs => {
+    chrome.tabs.query({active: false, pinned: false, currentWindow:true}, tabs => {
         tabs.forEach(tab => {
             chrome.tabs.remove(tab.id);
         });
-	});
+    });
 }
